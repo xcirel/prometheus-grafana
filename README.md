@@ -33,9 +33,6 @@ const gauge = new promClient.Gauge({
 gauge.set(100*Math.random());
 ```
 
-
-
-
 ### Added a Histogram Metric
 Used to measure the distribution
 
@@ -48,6 +45,21 @@ const histogram = new promClient.Histogram({
 
 histogram.observe(Math.random()); // Observe value in histogram
 ```
+
+### Added a Summary Metric
+Used to measure the distribution with percentiles
+
+```js
+const summary = new promClient.Summary({
+    name: 'class_summary_request_time_seconds',
+    help: 'Time to response from API',
+    percentiles: [0.01, 0.1, 0.5, 0.9, 0.99] // percentiles 1%, 10%, 50%, 90%, 99%
+});
+
+summary.observe(time);
+```
+
+
 
 
 Reference: https://github.com/siimon/prom-client#labels
