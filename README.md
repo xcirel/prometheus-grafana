@@ -1,7 +1,3 @@
-
-
-
-
 ### Start a container with Prometheus
 
 ```sh
@@ -15,11 +11,8 @@ docker run \
 
 
 
-### Added a Application to Prometheus
-
+## Monitoring an Application with Prometheus
 In this example we work with a node application, see on ***app*** folder.
-
-
 
 ### Added a Gauge Metric
 Can increase or decrease arbitrarily
@@ -59,7 +52,34 @@ const summary = new promClient.Summary({
 summary.observe(time);
 ```
 
+Links
+https://prometheus.io/docs/instrumenting/clientlibs/
+https://github.com/siimon/prom-client#labels
+
+
+## Monitoring Servers with Prometheus
+Install ***node_exporter*** on server for registrer metrics
+
+```yaml
+version: '3.8'
+
+services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: bridge
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'     
+    ports:
+      - 9100:9100
+```
 
 
 
-Reference: https://github.com/siimon/prom-client#labels
+
+
+Links
+https://prometheus.io/docs/instrumenting/exporters/
