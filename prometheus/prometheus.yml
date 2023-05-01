@@ -12,3 +12,8 @@ scrape_configs:
   static_configs:
   - targets:
     - 192.168.15.101:3000
+
+- job_name: server-001
+  static_configs:
+  - targets:
+    - 3.87.217.36:9100    

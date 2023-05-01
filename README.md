@@ -77,8 +77,21 @@ services:
       - 9100:9100
 ```
 
+Add a new target on ***prometheus.yml***
 
+```yaml
+- job_name: server-001
+  static_configs:
+  - targets:
+    - 3.87.217.36:9100    
+```
 
+Restart de container to update de configuration
+
+```sh
+docker container restart prometheus
+```
+Done! Now you can see the metrics on ***http://<IP_ADDRESS>:9100/metrics***
 
 
 Links
