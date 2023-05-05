@@ -3,8 +3,9 @@
 ```sh
 docker run \
     --name prometheus \
-    --rm \
     -d \
+    -v prometheus:/prometheus \
+    -v $(pwd)/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
     -p 9090:9090 \
     prom/prometheus
 ```
